@@ -6,6 +6,24 @@ https://dl.armbian.com/_old/orangepione/archive/Armbian_5.90_Orangepione_Ubuntu_
 
 ## Install and build
 
+I had a problem with running out of memory while compiling the Python 3 stuff. To fix this I created a low priority swap file (by default Armbian uses zram swap devices with priority 5 - it is not advisable to use sdram as swap as it wears it out so I set the priority to 0)
+
+```
+sudo touch /var/swap
+sudo chmod 0600 /var/swap
+dd if=/dev/zero of=/var/swap bs=1024 count=524288
+sudo mkswap -f /var/swap
+sudo swapon -p 0 /var/swap
+```
+
+You can list the active swap devices with
+
+```
+swapon -s
+```
+
+Then I started with the OpenCV build
+
 See https://docs.opencv.org/4.3.0/d7/d9f/tutorial_linux_install.html
 
 Prerequisites:
