@@ -72,3 +72,15 @@ Then build with 7 parallel jobs (This failed the first time so I restarted witho
 ```
 make -j7
 ```
+
+Now turn off the swap file to save the sdram
+
+```
+sudo swapoff /var/swap
+```
+
+Then install the libraries
+
+```
+sudo make install
+```
